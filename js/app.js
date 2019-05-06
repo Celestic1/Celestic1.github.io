@@ -18,6 +18,7 @@ function handleError(error) {
   }
 
 var callerName = "";
+var publisherName = "";
 function initializeSession() {
 
   var session = OT.initSession(apiKey, sessionId);
@@ -77,9 +78,10 @@ function initializeFirebase() {
     messagingSenderId: "592854475519"
   };
   firebase.initializeApp(config);
+  
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      console.log("User: " + user);
+      console.log("User name: " + user.name);
     } else {
       console.log("User signed out");
     }
