@@ -1,7 +1,3 @@
-if (!firebase.apps.length) {
-  firebase.initializeApp({});
-}
-
 // (optional) add server code here
 var SERVER_BASE_URL = 'https://telemedicineapp.herokuapp.com/';
 fetch(SERVER_BASE_URL + '/session').then(function(res) {
@@ -10,16 +6,9 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   apiKey = res.apiKey;
   sessionId = res.sessionId;
   token = res.token;
+  initializeFirebase();
   initializeSession();
 }).catch(handleError);
-
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    console.log("User: " + user);
-  } else {
-    console.log("User signed out");
-  }
-});
 
 // Handling all of our errors here by alerting them
 function handleError(error) {
@@ -38,6 +27,7 @@ function initializeSession() {
       callerName = event.stream.name;
       let r = confirm(callerName + " is trying to start a call with you. Accept?");
       if (r == true){
+        getUserInfo();
         session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
           width: '100%',
@@ -87,7 +77,15 @@ function initializeFirebase() {
     messagingSenderId: "592854475519"
   };
   firebase.initializeApp(config);
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log("User: " + user);
+    } else {
+      console.log("User signed out");
+    }
+  });
 }
+
 
 function getUserInfo(){
   var database = firebase.database();
@@ -134,5 +132,3 @@ function getUserInfo(){
 function logCall(){
 
 }
-
-
