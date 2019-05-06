@@ -6,9 +6,19 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   apiKey = res.apiKey;
   sessionId = res.sessionId;
   token = res.token;
-  initalizeFirebase();
+  if (!firebase.apps.length) {
+    firebase.initializeApp({});
+  }
   initializeSession();
 }).catch(handleError);
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log("User: " + user);
+  } else {
+    console.log("User signed out");
+  }
+});
 
 // Handling all of our errors here by alerting them
 function handleError(error) {
@@ -77,14 +87,6 @@ function initalizeFirebase() {
     messagingSenderId: "592854475519"
   };
   firebase.initializeApp(config);
-
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      console.log("User: " + user);
-    } else {
-      console.log("User signed out");
-    }
-  });
 }
 
 function getUserInfo(){
