@@ -41,6 +41,7 @@ function initializeSession() {
     });
 
   // Create a publisher
+  console.log("init publisher");
   var publisher = OT.initPublisher('publisher', {
     name: publisherName,
     insertMode: 'append',
@@ -54,7 +55,6 @@ function initializeSession() {
     if (error) {
       handleError(error);
     } else {
-      
       session.publish(publisher, handleError);
     }
   });
@@ -82,7 +82,6 @@ function initializeFirebase() {
     messagingSenderId: "592854475519"
   };
   firebase.initializeApp(config);
-  test();
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -98,10 +97,6 @@ function initializeFirebase() {
       console.log("User not signed in.");
     }
   });
-}
-
-function test(){
-
 }
 
 
