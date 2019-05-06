@@ -29,7 +29,6 @@ function initializeSession() {
       callerName = event.stream.name;
       let r = confirm(callerName + " is trying to start a call with you. Accept?");
       if (r == true){
-        console.log("init publisher: " + publisherName);
         getUserInfo();
         session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
@@ -43,6 +42,7 @@ function initializeSession() {
     });
 
   // Create a publisher
+  console.log("init publisher: " + publisherName);
   var publisher = OT.initPublisher('publisher', {
     name: publisherName,
     insertMode: 'append',
@@ -90,7 +90,6 @@ function initializeFirebase() {
         snapshot.forEach((child) => {
           if(child.key == 'name'){
             publisherName = child.val();
-            console.log("Publisher name: " + publisher);
           }
         });
       });
