@@ -82,22 +82,25 @@ function initializeFirebase() {
     messagingSenderId: "592854475519"
   };
   firebase.initializeApp(config);
+  test();
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       firebase.database().ref('Doctors/' + user.uid).on('value', (snapshot) => {
         snapshot.forEach((child) => {
-          console.log(child);
-          // if(snapshot.key == "name") {
-          //   publisherName = snapshot.val();
-          //   console.log(publisherName);
-          // }
+          if(child.key == 'name'){
+            publisherName = child.val();
+          }
         });
       });
     } else {
-      console.log("User signed out");
+      console.log("User not signed in.");
     }
   });
+}
+
+function test(){
+
 }
 
 
