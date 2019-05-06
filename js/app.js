@@ -86,10 +86,13 @@ function initializeFirebase() {
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       firebase.database().ref('Doctors/' + user.uid).on('value', (snapshot) => {
-        if(snapshot.key == "name") {
-          publisherName = snapshot.val();
-          console.log(publisherName);
-        }
+        snapshot.forEach((child) => {
+          console.log(child);
+          // if(snapshot.key == "name") {
+          //   publisherName = snapshot.val();
+          //   console.log(publisherName);
+          // }
+        });
       });
     } else {
       console.log("User signed out");
