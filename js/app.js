@@ -65,7 +65,11 @@ function initializeSession() {
 } 
 
 function endcall(){
-
+  firebase.auth().signOut().then(function() {
+    console.log("Signed out successfully.");
+  }).catch(function(error) {
+    // An error happened.
+  });  
 }
 
 function initializeFirebase() {
@@ -78,7 +82,7 @@ function initializeFirebase() {
     messagingSenderId: "592854475519"
   };
   firebase.initializeApp(config);
-  
+
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       console.log("User name: " + user.name);
