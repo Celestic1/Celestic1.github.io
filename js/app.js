@@ -42,7 +42,7 @@ function initializeSession() {
 
   // Create a publisher
   var publisher = OT.initPublisher('publisher', {
-    name: 'test',
+    name: publisherName,
     insertMode: 'append',
     width: '100%',
     height: '100%'
@@ -85,7 +85,11 @@ function initializeFirebase() {
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      console.log("User name: " + user.uid);
+      firebase.database().ref('Doctors/' + user.uid).on('value', (snapshot) => {
+        if(snapchild.key == "name") {
+          publisherName = snapchild.val();
+        }
+      });
     } else {
       console.log("User signed out");
     }
