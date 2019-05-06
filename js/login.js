@@ -28,7 +28,3 @@ function login(){
     }
   });
 }
-
-function initializeFirebase(){
-
-}
