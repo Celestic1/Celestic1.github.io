@@ -10,9 +10,6 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
 }).catch(handleError);
 
 firebase.auth().onAuthStateChanged(function(user) {
-  if (!firebase.apps.length) {
-    firebase.initializeApp({});
-  } 
   if (user) {
     console.log("User: " + user);
   } else {
@@ -37,6 +34,7 @@ function initializeSession() {
       callerName = event.stream.name;
       let r = confirm(callerName + " is trying to start a call with you. Accept?");
       if (r == true){
+        initializeFirebase();
         getUserInfo();
         session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
@@ -78,7 +76,15 @@ function endcall(){
 }
 
 function initializeFirebase() {
-
+  var config = {
+    apiKey: "AIzaSyD859JZHYRGQfalwZZjQEk8e0s8EBAycaM",
+    authDomain: "videochat-84e5a.firebaseapp.com",
+    databaseURL: "https://videochat-84e5a.firebaseio.com",
+    projectId: "videochat-84e5a",
+    storageBucket: "videochat-84e5a.appspot.com",
+    messagingSenderId: "592854475519"
+  };
+  firebase.initializeApp(config);
 }
 
 function getUserInfo(){
