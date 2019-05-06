@@ -90,7 +90,7 @@ function initializeFirebase() {
         snapshot.forEach((child) => {
           if(child.key == 'name'){
             publisherName = child.val();
-            console.log(publisherName);
+            console.log("Publisher name: " + publisherName);
           }
         });
       });
