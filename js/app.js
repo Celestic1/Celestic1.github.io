@@ -6,9 +6,9 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   apiKey = res.apiKey;
   sessionId = res.sessionId;
   token = res.token;
-  initializeSession();
   initalizeFirebase();
   getCurrentUser();
+  initializeSession();
 }).catch(handleError);
 
 // Handling all of our errors here by alerting them
@@ -128,7 +128,7 @@ function logCall(){
 
 function getCurrentUser(){
   var user = firebase.auth().currentUser;
-
+  console.log("User: " + user);
   if (user) {
     console.log(user);
     } else {
