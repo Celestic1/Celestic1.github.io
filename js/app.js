@@ -21,6 +21,21 @@ var callerName = "";
 var publisherName = "";
 function initializeSession() {
 
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      firebase.database().ref('Doctors/' + user.uid).on('value', (snapshot) => {
+        snapshot.forEach((child) => {
+          if(child.key == 'name'){
+            publisherName = child.val();
+            console.log("Publisher name: " + publisherName);
+          }
+        });
+      });
+    } else {
+      console.log("User not signed in.");
+    }
+  });
+
   var session = OT.initSession(apiKey, sessionId);
   
 
@@ -84,20 +99,7 @@ function initializeFirebase() {
   };
   firebase.initializeApp(config);
 
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      firebase.database().ref('Doctors/' + user.uid).on('value', (snapshot) => {
-        snapshot.forEach((child) => {
-          if(child.key == 'name'){
-            publisherName = child.val();
-            console.log("Publisher name: " + publisherName);
-          }
-        });
-      });
-    } else {
-      console.log("User not signed in.");
-    }
-  });
+  
 }
 
 
