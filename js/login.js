@@ -14,7 +14,7 @@ function login(){
 
   firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
   .then(function(user){
-    window.location="/Users/raymondliang/Desktop/VideoChatJS/videocall.html";
+    window.location="https://github.com/Celestic1/testsite/videocall.html";
   })
   .catch(function(error) {
     // Handle Errors here.

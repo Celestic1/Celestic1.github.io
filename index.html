@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="/Users/raymondliang/Desktop/VideoChatJS/css/style.css" />
+  <title>Firebase Login</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="/Users/raymondliang/Desktop/VideoChatJS/css/style.css" />
 </head>
 <body>
-  <div class="login-div">
-    <h3 align="center">Welcome</h3>
-    <button onclick="window.location = '/Users/raymondliang/Desktop/VideoChatJS/login.html';">Login Here</button>
+
+  <div id="login_div" class="main-div">
+    <input type="email" placeholder="Email..." id="email_field" required/>
+    <input type="password" placeholder="Password..." id="password_field" required/>
+
+    <button onclick="login()">Log In</button>
   </div>
 
-  <div class="register-div">
-      <button onclick="window.location = '/Users/raymondliang/Desktop/VideoChatJS/register.html';">Register Here</button>
+  <div style="text-align: center">
+    <a href="/Users/raymondliang/Desktop/VideoChatJS/register.html" style="margin-left:50px;">Click here to register</a>
   </div>
+
+  <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+  <script src="/Users/raymondliang/Desktop/VideoChatJS/js/login.js"></script>
 
 </body>
 </html>
