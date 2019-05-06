@@ -8,6 +8,7 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   token = res.token;
   initializeFirebase();
   while(publisherName != ''){
+    console.log('inside');
     initializeSession();
     break;
   }
