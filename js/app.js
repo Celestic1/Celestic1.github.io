@@ -88,6 +88,7 @@ function initializeFirebase() {
       firebase.database().ref('Doctors/' + user.uid).on('value', (snapshot) => {
         if(snapchild.key == "name") {
           publisherName = snapchild.val();
+          console.log(publisherName);
         }
       });
     } else {
