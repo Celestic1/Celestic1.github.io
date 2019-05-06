@@ -41,7 +41,7 @@ function initializeSession() {
     });
 
   // Create a publisher
-  console.log("init publisher");
+  console.log("init publisher: " + publisherName);
   var publisher = OT.initPublisher('publisher', {
     name: publisherName,
     insertMode: 'append',
