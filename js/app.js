@@ -1,4 +1,6 @@
-initializeFirebase();
+if (!firebase.apps.length) {
+  firebase.initializeApp();
+}
 
 // (optional) add server code here
 var SERVER_BASE_URL = 'https://telemedicineapp.herokuapp.com/';
