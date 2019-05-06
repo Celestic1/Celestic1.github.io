@@ -7,6 +7,10 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   sessionId = res.sessionId;
   token = res.token;
   initializeFirebase();
+  while(publisherName != ''){
+    initializeSession();
+    break;
+  }
 }).catch(handleError);
 
 // Handling all of our errors here by alerting them
@@ -97,8 +101,6 @@ function initializeFirebase() {
       console.log("User not signed in.");
     }
   });
-
-  initializeSession();
 }
 
 
