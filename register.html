@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Firebase Registration</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="/Users/raymondliang/Desktop/VideoChatJS/css/style.css" />
+</head>
+<body>
+    <div id="regpage_div" class="main-div">
+        <input type="email" placeholder="Email..." id="reg_email" />
+        <input type="text" placeholder="Name..." id="reg_name" />
+        <input type="text" placeholder="Address..." id="reg_addr" />
+        <input type="number" placeholder="Phone..." id="reg_phone" />
+        <input type="password" placeholder="Password..." id="reg_pass" />
+        <button onclick="register()">Register</button>
+    </div>
+
+    <div style="text-align: center">
+        <a href="/Users/raymondliang/Desktop/VideoChatJS/Login.html" style="margin-left:50px;">Already registered? Click here to login</a>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-database.js"></script>
+    
+    <script>
+        // Initialize Firebase
+        var config = {
+        apiKey: "AIzaSyD859JZHYRGQfalwZZjQEk8e0s8EBAycaM",
+        authDomain: "videochat-84e5a.firebaseapp.com",
+        databaseURL: "https://videochat-84e5a.firebaseio.com",
+        projectId: "videochat-84e5a",
+        storageBucket: "videochat-84e5a.appspot.com",
+        messagingSenderId: "592854475519"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="/Users/raymondliang/Desktop/VideoChatJS/js/register.js"></script>
+
+</body>
+</html>

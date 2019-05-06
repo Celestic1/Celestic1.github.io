@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="css/app.css" rel="stylesheet" type="text/css">
+
+<title>Call Page</title>
+<script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+</head>
+<body>
+<div class = "container-fluid">
+    
+    <div class="row header">
+            <div class="col-xl-12 text-center">
+                <h1>Video Call Test Page</h1>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-xl-8">
+            <div class="main-wrapper">
+                <div id="videos">
+                        <div id="subscriber"></div>
+                        <div id="publisher"></div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-10 col-xl-4">
+            <div class="col">
+                    <!-- <div class="col-8 col-sm-6">
+                        Level 2: .col-8 .col-sm-6
+                    </div>
+                    <div class="col-4 col-sm-6">
+                        Level 2: .col-4 .col-sm-6
+                    </div> -->
+ 
+                <div id="patient_history">
+                    <h3 class="text-center">Patient Info:</h3>
+                    <h4 id="name">Name:</h4>
+                    <h4 id="age">Age: </h4>
+                    <h4 id="insurance">Insurance: </h4>
+                    <h4 id="allergy_history">Allergy History: </h4>
+                    <h4 id="medical_history">Medical History: </h4>
+                    <h4 id="prescription_history">Prescription History: </h4>
+                </div>
+                <div id="call_history" class=".col-md-offset-50px">
+                    <h4>Call History: </h4>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Doctor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+                <div>
+                    <button id="end_call_button" type="button" class="btn btn-outline-primary" onclick="endcall()">End Call</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/app.js"></script> 
+<script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+
+</body>
+</html>
