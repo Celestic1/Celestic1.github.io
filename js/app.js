@@ -22,6 +22,7 @@ var publisherName = "";
 function initializeSession() {
 
   var session = OT.initSession(apiKey, sessionId);
+  console.log("init publisher: " + publisherName);
 
   // Subscribe to a newly created stream
   session.on('streamCreated', function(event) {
@@ -41,7 +42,6 @@ function initializeSession() {
     });
 
   // Create a publisher
-  console.log("init publisher: " + publisherName);
   var publisher = OT.initPublisher('publisher', {
     name: publisherName,
     insertMode: 'append',
