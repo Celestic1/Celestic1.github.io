@@ -7,7 +7,6 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   sessionId = res.sessionId;
   token = res.token;
   initalizeFirebase();
-  getCurrentUser();
   initializeSession();
 }).catch(handleError);
 
@@ -126,12 +125,10 @@ function logCall(){
 
 }
 
-function getCurrentUser(){
-  var user = firebase.auth().currentUser;
-  console.log("User: " + user);
+firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    console.log(user);
-    } else {
-    console.log("No one is logged in.");
+    console.log("User: " + user);
+  } else {
+    console.log("User signed out");
   }
-}
+});
