@@ -85,7 +85,7 @@ function initializeFirebase() {
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      console.log("User name: " + user.name);
+      console.log("User name: " + user.uid);
     } else {
       console.log("User signed out");
     }
