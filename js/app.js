@@ -22,13 +22,14 @@ var publisherName = "";
 function initializeSession() {
 
   var session = OT.initSession(apiKey, sessionId);
-  console.log("init publisher: " + publisherName);
+  
 
   // Subscribe to a newly created stream
   session.on('streamCreated', function(event) {
       callerName = event.stream.name;
       let r = confirm(callerName + " is trying to start a call with you. Accept?");
       if (r == true){
+        console.log("init publisher: " + publisherName);
         getUserInfo();
         session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
