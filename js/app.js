@@ -7,7 +7,6 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   sessionId = res.sessionId;
   token = res.token;
   initializeFirebase();
-  initializeSession();
 }).catch(handleError);
 
 // Handling all of our errors here by alerting them
@@ -40,20 +39,6 @@ function initializeSession() {
       }
       
     });
-
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      firebase.database().ref('Doctors/' + user.uid).on('value', (snapshot) => {
-        snapshot.forEach((child) => {
-          if(child.key == 'name'){
-            publisherName = child.val();
-          }
-        });
-      });
-    } else {
-      console.log("User not signed in.");
-    }
-  });
 
   // Create a publisher
   console.log("init publisher: " + publisherName);
@@ -98,7 +83,21 @@ function initializeFirebase() {
   };
   firebase.initializeApp(config);
 
-  
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      firebase.database().ref('Doctors/' + user.uid).on('value', (snapshot) => {
+        snapshot.forEach((child) => {
+          if(child.key == 'name'){
+            publisherName = child.val();
+          }
+        });
+      });
+    } else {
+      console.log("User not signed in.");
+    }
+  });
+
+  initializeSession();
 }
 
 
