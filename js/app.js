@@ -9,7 +9,9 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   initializeFirebase();
   while(publisherName == ''){
     console.log('inside');
-    break;
+    if(publisherName != ''){
+      break;
+    }
   }
   initializeSession();
 }).catch(handleError);
