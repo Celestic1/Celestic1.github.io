@@ -1,5 +1,5 @@
 if (!firebase.apps.length) {
-  firebase.initializeApp();
+  firebase.initializeApp({});
 }
 
 // (optional) add server code here
@@ -78,17 +78,15 @@ function endcall(){
 }
 
 function initializeFirebase() {
-  var firebaseConfig = {
+  var config = {
     apiKey: "AIzaSyD859JZHYRGQfalwZZjQEk8e0s8EBAycaM",
     authDomain: "videochat-84e5a.firebaseapp.com",
     databaseURL: "https://videochat-84e5a.firebaseio.com",
     projectId: "videochat-84e5a",
     storageBucket: "videochat-84e5a.appspot.com",
-    messagingSenderId: "592854475519",
-    appId: "1:592854475519:web:cfe1411df4ebaa22"
+    messagingSenderId: "592854475519"
   };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(config);
 }
 
 function getUserInfo(){
