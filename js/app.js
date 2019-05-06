@@ -10,6 +10,9 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
 }).catch(handleError);
 
 firebase.auth().onAuthStateChanged(function(user) {
+  if (!firebase.apps.length) {
+    firebase.initializeApp({});
+  } 
   if (user) {
     console.log("User: " + user);
   } else {
