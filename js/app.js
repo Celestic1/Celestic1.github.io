@@ -77,6 +77,14 @@ function initalizeFirebase() {
     messagingSenderId: "592854475519"
   };
   firebase.initializeApp(config);
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log("User: " + user);
+    } else {
+      console.log("User signed out");
+    }
+  });
 }
 
 function getUserInfo(){
@@ -125,10 +133,4 @@ function logCall(){
 
 }
 
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    console.log("User: " + user);
-  } else {
-    console.log("User signed out");
-  }
-});
+
