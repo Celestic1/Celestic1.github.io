@@ -7,11 +7,11 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   sessionId = res.sessionId;
   token = res.token;
   initializeFirebase();
-  while(publisherName != ''){
+  while(publisherName == ''){
     console.log('inside');
-    initializeSession();
     break;
   }
+  initializeSession();
 }).catch(handleError);
 
 // Handling all of our errors here by alerting them
