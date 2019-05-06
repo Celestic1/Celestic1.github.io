@@ -6,9 +6,7 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   apiKey = res.apiKey;
   sessionId = res.sessionId;
   token = res.token;
-  if (!firebase.apps.length) {
-    firebase.initializeApp({});
-  }
+  initializeFirebase();
   initializeSession();
 }).catch(handleError);
 
@@ -77,7 +75,7 @@ function endcall(){
 
 }
 
-function initalizeFirebase() {
+function initializeFirebase() {
   var config = {
     apiKey: "AIzaSyD859JZHYRGQfalwZZjQEk8e0s8EBAycaM",
     authDomain: "videochat-84e5a.firebaseapp.com",
