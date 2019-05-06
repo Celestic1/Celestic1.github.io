@@ -1,3 +1,5 @@
+initializeFirebase();
+
 // (optional) add server code here
 var SERVER_BASE_URL = 'https://telemedicineapp.herokuapp.com/';
 fetch(SERVER_BASE_URL + '/session').then(function(res) {
@@ -34,8 +36,6 @@ function initializeSession() {
       callerName = event.stream.name;
       let r = confirm(callerName + " is trying to start a call with you. Accept?");
       if (r == true){
-        initializeFirebase();
-        getUserInfo();
         session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
           width: '100%',
