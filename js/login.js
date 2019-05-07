@@ -20,7 +20,7 @@ function login(){
           snapshot.forEach((child) => {
             if(child.key == 'name'){
               var publisherName = child.val();
-              localStorage.setItem('publisher_name', publisherName);
+              await localStorage.setItem('publisher_name', publisherName);
             }
           });
         });
