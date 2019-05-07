@@ -82,6 +82,8 @@ function initializeFirebase() {
     messagingSenderId: "592854475519"
   };
   firebase.initializeApp(config);
+  var selected = localStorage.getItem('publisher_name');
+  console.log(selected);
 }
 
 

@@ -20,7 +20,7 @@ function login(){
           snapshot.forEach((child) => {
             if(child.key == 'name'){
               var publisherName = child.val();
-              console.log('Publisher name: ' + publisherName);
+              localStorage.setItem('publisher_name', publisherName);
             }
           });
         });
@@ -28,7 +28,7 @@ function login(){
         console.log("User not signed in.");
       }
     });
-    window.location="videocall.html";
+    // window.location="videocall.html";
   })
   .catch(function(error) {
     // Handle Errors here.
