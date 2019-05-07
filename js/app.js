@@ -8,7 +8,7 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   token = res.token;
   initializeFirebase();
   initializeSession();
-  logCall();
+  //logCall();
 }).catch(handleError);
 
 // Handling all of our errors here by alerting them
