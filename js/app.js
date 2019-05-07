@@ -79,6 +79,7 @@ function initializeSession() {
 function endcall(){
   firebase.auth().signOut().then(function() {
     console.log("Signed out successfully.");
+    logCall();
     window.location='login.html';
   }).catch(function(error) {
     // An error happened.
@@ -142,11 +143,11 @@ function getUserInfo(){
   });
 }
 
-// function logCall(){
-//   var ref = firebase.database();
-//   ref.child("Call_History").child(currUID).set({
-//     date: date,
-//     time: time,
-//     doctor: publisherName
-//   });
-// }
+function logCall(){
+  var ref = firebase.database();
+  ref.child('Call_History/' + currUID).set({
+    date: date,
+    time: time,
+    doctor: publisherName
+  });
+}
