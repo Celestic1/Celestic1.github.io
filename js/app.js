@@ -142,7 +142,7 @@ function getUserInfo(){
 }
 
 function logCall(){
-  var ref = firebase.database().ref();
+  var ref = firebase.database();
   ref.child("Call_History").child(currUID).set({
     date: date,
     time: time,
