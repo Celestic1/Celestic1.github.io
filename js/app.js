@@ -8,7 +8,7 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   token = res.token;
   initializeFirebase();
   initializeSession();
-  //logCall();
+  logCall();
 }).catch(handleError);
 
 // Handling all of our errors here by alerting them
@@ -146,9 +146,15 @@ function getUserInfo(){
   mh_header.textContent = "Medical History: " + medical_history;
   ph_header.textContent = "Prescription History: " + prescription_history;
   });
-  console.log("CURRUID: " + currUID);
+
 }
 
 function logCall(){
-
+  var newRow = $("<tr>");
+  var cols = "";
+  firebase.database().ref('Call_History/' + currUID + '/' + publisherName).on('value', (snapshot) =>{
+    snapshot.forEach((child) => {
+      console.log(child);
+    });
+  });
 }
