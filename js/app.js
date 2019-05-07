@@ -142,12 +142,12 @@ function getUserInfo(){
   mh_header.textContent = "Medical History: " + medical_history;
   ph_header.textContent = "Prescription History: " + prescription_history;
   });
+  console.log("CURRUID: " + currUID);
 }
 
 function logCall(){
   console.log("currUID: " + currUID);
-  var ref = firebase.database();
-  ref.child('Call_History/' + currUID).set({
+  firebase.database().ref.child('Call_History/' + currUID).set({
     date: date,
     time: time,
     doctor: publisherName
