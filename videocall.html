@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link href="css/app.css" rel="stylesheet" type="text/css">
 
@@ -50,7 +51,7 @@
                 </div>
                 <div id="call_history" class=".col-md-offset-50px">
                     <h4>Call History: </h4>
-                        <table class="table">
+                        <table class="table" id='myTable'>
                             <thead class="thead-dark">
                                 <tr>
                                 <th scope="col">#</th>
@@ -59,14 +60,7 @@
                                 <th scope="col">Doctor</th>
                                 </tr>
                             </thead>
-                            <!-- <tbody>
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                </tr>
-                            </tbody> -->
+
                         </table>
                 </div>
                 <div>
@@ -86,7 +80,8 @@
 <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/5.11.1/firebase-database.js"></script>
-
-
+<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script>
+</script>
 </body>
 </html>

@@ -40,7 +40,7 @@ function initializeSession() {
       let r = confirm(callerName + " is trying to start a call with you. Accept?");
       if (r == true){
         getUserInfo();
-        getCallLogs(currUId);
+        getCallLogs(currUID);
         session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
           width: '100%',
@@ -76,13 +76,13 @@ function initializeSession() {
 } 
 
 function endcall(){
-  firebase.auth().signOut().then(function() {
-    console.log("Signed out successfully.");
+  // firebase.auth().signOut().then(function() {
+  //   console.log("Signed out successfully.");
     
-    window.location='login.html';
-  }).catch(function(error) {
-    // An error happened.
-  });  
+  //   window.location='login.html';
+  // }).catch(function(error) {
+  //   // An error happened.
+  // });  
 }
 
 function initializeFirebase() {
@@ -113,10 +113,21 @@ function getUserInfo(){
       });
     });
   var temp = '/' + publisherName;
-  firebase.database().ref('Call_History/' + currUID + temp).push({
-    date: date,
-    time: time
+  // firebase.database().ref('Call_History/' + currUID + temp).push({
+  //   date: date,
+  //   time: time
+  // });
+
+  var tableRef = firebase.database().ref('Call_History/' + currUID + '/' + publisherName);
+  tableRef.once('value', function(userSnapshot){
+    userSnapshot.forEach(function(userSnapshot) {
+      userSnapshot.forEach(function(userSnapshot) {
+        console.log("Usersnapshot: " + userSnapshot.val());
+      });
+    });
   });
+
+
   var name = "";
   var age = "";
   var medical_history = "";
@@ -147,9 +158,6 @@ function getUserInfo(){
 }
 
 function getCallLogs(uid){
-  firebase.database().ref('Call_History/' + uid + '/' + publisherName).on('value', (snapshot) =>{
-    snapshot.forEach((child) => {
-      console.log(child);
-    });
-  });
+
+
 }
