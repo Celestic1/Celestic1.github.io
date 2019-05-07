@@ -26,8 +26,7 @@ var date = (currentdate.getMonth()+1) + "/"
                 + currentdate.getFullYear();
 
 var time = currentdate.getHours() + ":"  
-+ currentdate.getMinutes() + ":" 
-+ currentdate.getSeconds();
++ currentdate.getMinutes();
 
 console.log(date + " " + time);
 
@@ -116,10 +115,9 @@ function getUserInfo(){
       });
     });
   console.log("currUID: " + currUID);
-  firebase.database().ref('Call_History/' + currUID).set({
+  firebase.database().ref('Call_History/' + currUID + '/' + publisherName).push({
     date: date,
     time: time,
-    doctor: publisherName
   });
   var name = "";
   var age = "";
