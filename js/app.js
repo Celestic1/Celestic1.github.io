@@ -152,6 +152,7 @@ function getUserInfo(){
 function logCall(){
   var newRow = $("<tr>");
   var cols = "";
+  console.log("curruid: " + currUID);
   firebase.database().ref('Call_History/' + currUID + '/' + publisherName).on('value', (snapshot) =>{
     snapshot.forEach((child) => {
       console.log(child);
