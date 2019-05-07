@@ -83,6 +83,7 @@ function initializeFirebase() {
   };
   firebase.initializeApp(config);
   var selected = localStorage.getItem('publisher_name');
+  console.log("selected: " + selected);
   publisherName = selected;
 }
 
