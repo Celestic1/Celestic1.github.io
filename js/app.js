@@ -114,7 +114,8 @@ function getUserInfo(){
           }   
       });
     });
-  firebase.database().ref('Call_History/' + currUID + '/' + publisherName).push({
+  var temp = '/' + publisherName;
+  firebase.database().ref('Call_History/' + currUID + temp).push({
     date: date,
     time: time
   });
