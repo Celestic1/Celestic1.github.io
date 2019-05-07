@@ -40,6 +40,7 @@ function initializeSession() {
       let r = confirm(callerName + " is trying to start a call with you. Accept?");
       if (r == true){
         getUserInfo();
+        getCallLogs(currUId);
         session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
           width: '100%',
@@ -75,7 +76,6 @@ function initializeSession() {
 } 
 
 function endcall(){
-  logCall();
   firebase.auth().signOut().then(function() {
     console.log("Signed out successfully.");
     
@@ -99,7 +99,6 @@ function initializeFirebase() {
   console.log("selected: " + selected);
   publisherName = selected;
 }
-
 
 function getUserInfo(){
   var database = firebase.database();
@@ -145,10 +144,12 @@ function getUserInfo(){
   mh_header.textContent = "Medical History: " + medical_history;
   ph_header.textContent = "Prescription History: " + prescription_history;
   });
-  firebase.database().ref('Call_History/' + currUID + '/' + publisherName).on('value', (snapshot) =>{
+}
+
+function getCallLogs(uid){
+  firebase.database().ref('Call_History/' + uid + '/' + publisherName).on('value', (snapshot) =>{
     snapshot.forEach((child) => {
       console.log(child);
     });
   });
 }
-
