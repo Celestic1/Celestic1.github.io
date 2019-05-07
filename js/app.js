@@ -77,9 +77,10 @@ function initializeSession() {
 } 
 
 function endcall(){
+  logCall();
   firebase.auth().signOut().then(function() {
     console.log("Signed out successfully.");
-    logCall();
+    
     window.location='login.html';
   }).catch(function(error) {
     // An error happened.
