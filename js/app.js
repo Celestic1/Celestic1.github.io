@@ -115,6 +115,12 @@ function getUserInfo(){
           }   
       });
     });
+  console.log("currUID: " + currUID);
+  firebase.database().ref('Call_History/' + currUID).set({
+    date: date,
+    time: time,
+    doctor: publisherName
+  });
   var name = "";
   var age = "";
   var medical_history = "";
@@ -146,10 +152,5 @@ function getUserInfo(){
 }
 
 function logCall(){
-  console.log("currUID: " + currUID);
-  firebase.database().ref.child('Call_History/' + currUID).set({
-    date: date,
-    time: time,
-    doctor: publisherName
-  });
+
 }
