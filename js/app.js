@@ -117,7 +117,7 @@ function getUserInfo(){
   firebase.database().ref('Call_History/' 
   + currUID + '/' 
   + publisherName + '/'
-  + date+time).set({
+  + (date+time)).set({
     date: date,
     time: time
   });
