@@ -114,10 +114,9 @@ function getUserInfo(){
           }   
       });
     });
-  console.log("currUID: " + currUID);
-  firebase.database().ref('Call_History/' + currUID + '/' + publisherName).push({
+  firebase.database().ref('Call_History/' + currUID + '/' + publisherName).set({
     date: date,
-    time: time,
+    time: time
   });
   var name = "";
   var age = "";
