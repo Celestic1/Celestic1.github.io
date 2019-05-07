@@ -7,12 +7,6 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   sessionId = res.sessionId;
   token = res.token;
   initializeFirebase();
-  while(publisherName == ''){
-    console.log('inside');
-    if(publisherName != ''){
-      break;
-    }
-  }
   initializeSession();
 }).catch(handleError);
 
@@ -44,7 +38,6 @@ function initializeSession() {
       } else {
         session.disconnect();
       }
-      
     });
 
   // Create a publisher
@@ -89,21 +82,6 @@ function initializeFirebase() {
     messagingSenderId: "592854475519"
   };
   firebase.initializeApp(config);
-
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      firebase.database().ref('Doctors/' + user.uid).on('value', (snapshot) => {
-        snapshot.forEach((child) => {
-          if(child.key == 'name'){
-            publisherName = child.val();
-            console.log('Publisher name: ' + publisherName);
-          }
-        });
-      });
-    } else {
-      console.log("User not signed in.");
-    }
-  });
 }
 
 

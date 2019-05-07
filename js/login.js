@@ -14,6 +14,20 @@ function login(){
 
   firebase.auth().signInWithEmailAndPassword(userEmail, userPass)
   .then(function(user){
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        firebase.database().ref('Doctors/' + user.uid).on('value', (snapshot) => {
+          snapshot.forEach((child) => {
+            if(child.key == 'name'){
+              var publisherName = child.val();
+              console.log('Publisher name: ' + publisherName);
+            }
+          });
+        });
+      } else {
+        console.log("User not signed in.");
+      }
+    });
     window.location="videocall.html";
   })
   .catch(function(error) {
