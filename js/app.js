@@ -144,6 +144,7 @@ function getUserInfo(){
 }
 
 function logCall(){
+  console.log("currUID: " + currUID);
   var ref = firebase.database();
   ref.child('Call_History/' + currUID).set({
     date: date,
