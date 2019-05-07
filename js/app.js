@@ -8,6 +8,7 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
   token = res.token;
   initializeFirebase();
   initializeSession();
+  logCall();
 }).catch(handleError);
 
 // Handling all of our errors here by alerting them
@@ -16,18 +17,19 @@ function handleError(error) {
       alert(error.message);
     }
   }
-
+var currUID = "";
 var callerName = "";
 var publisherName = "";
 var currentdate = new Date();
-var datetime = "Last Sync: " + currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + " @ "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
-                + currentdate.getSeconds();
+var date = (currentdate.getMonth()+1) + "/"
+                + currentdate.getDate() + "/" 
+                + currentdate.getFullYear();
 
-console.log(datetime);
+var time = currentdate.getHours() + ":"  
++ currentdate.getMinutes() + ":" 
++ currentdate.getSeconds();
+
+console.log(date + " " + time);
 
 function initializeSession() {
 
@@ -101,7 +103,6 @@ function initializeFirebase() {
 function getUserInfo(){
   var database = firebase.database();
   var ref = database.ref().child("Users");
-  currUID = "";
   ref.on('value', (snapshot) => {
     snapshot.forEach((child) => {
       uid = child.key;
@@ -141,5 +142,10 @@ function getUserInfo(){
 }
 
 function logCall(){
-
+  var ref = firebase.database().ref();
+  ref.child("Call_History").child(currUID).set({
+    date: date,
+    time: time,
+    doctor: publisherName
+  });
 }
