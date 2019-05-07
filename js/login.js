@@ -20,7 +20,14 @@ function login(){
           snapshot.forEach((child) => {
             if(child.key == 'name'){
               var publisherName = child.val();
-              await localStorage.setItem('publisher_name', publisherName);
+              localStorage.setItem('publisher_name', publisherName);
+              (function wait(){
+                if(localStorage.getItem('publisher_name') == publisherName){
+                  window.location="videocall.html";
+                } else {
+                  setTimeout(one, 30);
+                }
+              })();
             }
           });
         });
@@ -28,7 +35,6 @@ function login(){
         console.log("User not signed in.");
       }
     });
-    window.location="videocall.html";
   })
   .catch(function(error) {
     // Handle Errors here.
