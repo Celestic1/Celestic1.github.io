@@ -28,7 +28,7 @@ function login(){
         console.log("User not signed in.");
       }
     });
-    // window.location="videocall.html";
+    window.location="videocall.html";
   })
   .catch(function(error) {
     // Handle Errors here.
