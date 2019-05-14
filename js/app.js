@@ -115,10 +115,10 @@ function getUserInfo(){
       });
     });
   var temp = '/' + publisherName;
-    firebase.database().ref('Call_History/' + currUID + temp).push({
-    date: date,
-    time: time
-  });
+  // firebase.database().ref('Call_History/' + currUID + temp).push({
+  // date: date,
+  // time: time
+  // });
 
 
   var name = "";
@@ -151,7 +151,7 @@ function getUserInfo(){
 }
 
 function getCallLogs(){
-  var table = $('#example').DataTable( {
+  var table = $('#call_log').DataTable( {
     "lengthMenu": [5],
     "columns": [
         { title: "Date" },
