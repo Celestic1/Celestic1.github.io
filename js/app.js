@@ -3,10 +3,10 @@ var SERVER_BASE_URL = 'https://telemedicineapp.herokuapp.com/';
 fetch(SERVER_BASE_URL + '/session').then(function(res) {
   return res.json()
 }).then(function(res) {
+  initializeFirebase();
   apiKey = res.apiKey;
   sessionId = res.sessionId;
   token = res.token;
-  initializeFirebase();
   initializeSession();
 }).catch(handleError);
 
@@ -16,6 +16,8 @@ function handleError(error) {
       alert(error.message);
     }
   }
+var count = 0;
+var dataSet = [];
 var currUID = "";
 var callerName = "";
 var publisherName = "";
@@ -40,7 +42,7 @@ function initializeSession() {
       let r = confirm(callerName + " is trying to start a call with you. Accept?");
       if (r == true){
         getUserInfo();
-        getCallLogs(currUID);
+        getCallLogs();
         session.subscribe(event.stream, 'subscriber', {
           insertMode: 'append',
           width: '100%',
@@ -76,13 +78,13 @@ function initializeSession() {
 } 
 
 function endcall(){
-  // firebase.auth().signOut().then(function() {
-  //   console.log("Signed out successfully.");
+  firebase.auth().signOut().then(function() {
+    console.log("Signed out successfully.");
     
-  //   window.location='login.html';
-  // }).catch(function(error) {
-  //   // An error happened.
-  // });  
+    window.location='login.html';
+  }).catch(function(error) {
+    // An error happened.
+  });  
 }
 
 function initializeFirebase() {
@@ -113,18 +115,9 @@ function getUserInfo(){
       });
     });
   var temp = '/' + publisherName;
-  // firebase.database().ref('Call_History/' + currUID + temp).push({
-  //   date: date,
-  //   time: time
-  // });
-
-  var tableRef = firebase.database().ref('Call_History/' + currUID + '/' + publisherName);
-  tableRef.once('value', function(userSnapshot){
-    userSnapshot.forEach(function(userSnapshot) {
-      userSnapshot.forEach(function(userSnapshot) {
-        console.log("Usersnapshot: " + userSnapshot.val());
-      });
-    });
+    firebase.database().ref('Call_History/' + currUID + temp).push({
+    date: date,
+    time: time
   });
 
 
@@ -157,7 +150,39 @@ function getUserInfo(){
   });
 }
 
-function getCallLogs(uid){
+function getCallLogs(){
+  var table = $('#example').DataTable( {
+    "lengthMenu": [5],
+    "columns": [
+        { title: "Date" },
+        { title: "Time" },
+        { title: "With Who" }
+    ]
+  } );
+  firebase.database().ref().child("Users").on('value', (snapshot) => {
+    snapshot.forEach((child) => {
+      uid = child.key;
+      firebase.database().ref('Users/' + uid + '/name').on('value', (snapchild) => {
+          if(snapchild.val() == callerName){
+              currUID = uid;
+          }   
+      });
+    });
 
-
+  var callLog = [];
+  var tableRef = firebase.database().ref('Call_History/' + currUID + '/' + publisherName);
+  tableRef.once('value', function(userSnapshot){
+    userSnapshot.forEach(function(userSnapshot) {
+      userSnapshot.forEach(function(userSnapshot) {
+        callLog.push(userSnapshot.val());
+        count += 1;
+          if(count % 2 == 0){
+            callLog.push(publisherName);
+            table.rows.add([callLog]).draw();
+            callLog = [];
+          }
+        });
+      });
+    });
+  });
 }
