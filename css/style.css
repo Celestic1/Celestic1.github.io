@@ -42,6 +42,23 @@ input, button {
   padding: 10px;
 }
 
+.button-div {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+.form-div{
+  width: 25%;
+}
+
+.btn-xl {
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  width: 25%;
+}
+
 .main-div input {
   display: block;
   border: 1px solid #ccc;
