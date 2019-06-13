@@ -144,7 +144,7 @@ function getUserInfo(){
   name_header.textContent = "Name: " + name;
   age_header.textContent = "Age: " + age;
   insurance_header.textContent = "Insurance: " + insurance;
-  allergy_header.textContent = "Allergy_History: " + allergy_history;
+  allergy_header.textContent = "Allergy History: " + allergy_history;
   mh_header.textContent = "Medical History: " + medical_history;
   ph_header.textContent = "Prescription History: " + prescription_history;
   });
@@ -152,6 +152,7 @@ function getUserInfo(){
 
 function getCallLogs(){
   var table = $('#call_log').DataTable( {
+    "destroy": true,
     "lengthMenu": [5],
     "columns": [
         { title: "Date" },
