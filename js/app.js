@@ -169,7 +169,7 @@ function getCallLogs(){
           }   
       });
     });
-
+  table.clear();
   var callLog = [];
   var tableRef = firebase.database().ref('Call_History/' + currUID + '/' + publisherName);
   tableRef.once('value', function(userSnapshot){
