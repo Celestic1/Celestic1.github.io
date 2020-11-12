@@ -1,5 +1,5 @@
 // (optional) add server code here
-var SERVER_BASE_URL = 'https://telemedicineapp.herokuapp.com/';
+var SERVER_BASE_URL = 'http://unlvtelemedicine.herokuapp.com/';
 fetch(SERVER_BASE_URL + '/session').then(function(res) {
   return res.json()
 }).then(function(res) {
